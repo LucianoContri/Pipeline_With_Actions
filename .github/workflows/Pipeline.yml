@@ -72,11 +72,10 @@ jobs:
                 python -m pip install --upgrade pip
                 if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           # This step adds DagsHub authentication using secrets
-          - name: Train Model with DagsHub
+          - name: Train Model
             env:
               DAGSHUB_USERNAME: ${{ secrets.DAGSHUB_USERNAME }}
               DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
-          - name: Train Model
             run: |
               python train.py 
 
