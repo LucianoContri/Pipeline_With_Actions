@@ -63,11 +63,12 @@ def create_model(X):
 
 
 def config_mlflow():
+
+    # Set DagsHub credentials using environment variables from GitHub Actions secrets
+    os.environ['MLFLOW_TRACKING_USERNAME'] = os.getenv('DAGSHUB_USERNAME')  # Username from secrets
+    os.environ['MLFLOW_TRACKING_PASSWORD'] = os.getenv('DAGSHUB_TOKEN')
     # Set MLflow tracking URI to DagsHub's MLflow instance
     mlflow.set_tracking_uri('https://dagshub.com/LucianoContri/Data-Science-and-Big-data.mlflow')
-
-    # Initialize DagsHub logging
-    dagshub.init(repo_owner='LucianoContri', repo_name='Data-Science-and-Big-data', mlflow=True)
 
     # Enable TensorFlow autologging
     mlflow.tensorflow.autolog(log_models=True,
@@ -82,11 +83,12 @@ def train_model(model, X_train, y_train, is_train=True):
                   epochs=50,
                   validation_split=0.2,
                   verbose=3)
+    if is_train:
+        run_uri = f'runs:/{run.info.run_id}'
+        mlflow.register_model(run_uri, 'fetal_health')
 
 if __name__ == '__main__':
-    # Set DagsHub credentials using environment variables from GitHub Actions secrets
-    os.environ['MLFLOW_TRACKING_USERNAME'] = os.getenv('DAGSHUB_USERNAME')  # Username from secrets
-    os.environ['MLFLOW_TRACKING_PASSWORD'] = os.getenv('DAGSHUB_TOKEN')     # Token from secrets
+     # Token from secrets
 
     # Assuming `read_data`, `process_data`, and `create_model` functions are defined elsewhere in your code
     X, y = read_data()  # Load your data
