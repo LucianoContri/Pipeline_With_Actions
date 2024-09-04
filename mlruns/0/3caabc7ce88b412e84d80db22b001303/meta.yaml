@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/DEV/POS_PUC/CULTURA%20E%20PR%C3%81TICAS%20DATAOPS%20E%20MLOPS/mlruns/0/3caabc7ce88b412e84d80db22b001303/artifacts
+end_time: 1725407349619
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 3caabc7ce88b412e84d80db22b001303
+run_name: experiment_mlops_ead
+run_uuid: 3caabc7ce88b412e84d80db22b001303
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1725407348137
+status: 3
+tags: []
+user_id: Lucia
